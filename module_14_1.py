@@ -26,10 +26,6 @@ for i in range(1, 11, 3):
     cursor.execute('DELETE FROM Users WHERE username = ?',
                    (f'User{i}',))
 
-for i in range(1, 11, 3):
-    cursor.execute('DELETE FROM Users WHERE username = ?',
-                   (f'User{i}',))
-
 cursor.execute('SELECT * FROM Users WHERE age != ?', (60,))
 result = cursor.fetchall()
 for user in result:
