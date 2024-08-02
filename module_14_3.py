@@ -5,7 +5,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMar
 import logging
 
 
-api = '7404054421:AAHBP58BtOPj1Y7cvD8FwTLeTmPV24zSRWs'
+api = 'XXX'
 
 Prodacts= [
     ['Prodact1', 'Редуксин', 199, 'image/1.JPG'],
