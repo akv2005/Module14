@@ -23,10 +23,10 @@ kb = ReplyKeyboardMarkup(
 )
 inline_buy = InlineKeyboardMarkup(
     inline_keyboard=[
-        [InlineKeyboardButton(text='Prodact1', callback_data='product_buying'),
-        InlineKeyboardButton(text='Prodact2', callback_data='product_buying'),
-        InlineKeyboardButton(text='Prodact3', callback_data='product_buying'),
-        InlineKeyboardButton(text='Prodact4', callback_data='product_buying')],
+        [InlineKeyboardButton(text='Редуксин', callback_data='product_buying'),
+        InlineKeyboardButton(text='Турбослим', callback_data='product_buying'),
+        InlineKeyboardButton(text='Голдлайн', callback_data='product_buying'),
+        InlineKeyboardButton(text='Линдакса', callback_data='product_buying')],
     ]
 )
 
