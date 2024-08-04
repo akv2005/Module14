@@ -10,9 +10,25 @@ def initiate_db():
     price INTEGER NOT NULL,
     photo TEXT)
     ''')
-    # connection.commit()
-    # connection.close()
+
+    Products = [
+        ['Редуксин', 'Редуксин', 199, 'image/1.JPG'],
+        ['Турбослим', 'Турбослим Ночь', 299, 'image/2.JPG'],
+        ['Голдлайн', 'Голдлайн', 1999, 'image/3.JPG'],
+        ['Линдакса', 'Линдакса', 2999, 'image/4.JPG'],
+    ]
+
+    cursor.execute('SELECT COUNT(*) FROM Products')
+    product_count = cursor.fetchone()[0]
+
+    if product_count == 0:
+        for product in Products:
+            cursor.execute('INSERT INTO Products (title, description, price, photo) VALUES (?, ?, ?, ?)',
+                           (product[0], product[1], product[2], product[3]))
+    else:
+        print('База заполнена')
     return connection, cursor
+
 
 def get_all_products():
     connection, cursor = initiate_db()
@@ -21,7 +37,3 @@ def get_all_products():
     connection.commit()
     connection.close()
     return result
-
-
-# products = get_all_products()
-# print(products)
