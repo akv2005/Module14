@@ -5,7 +5,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, InlineKeyboardMar
 import logging
 from crud_functions import *
 
-api = '7383991464:AAEsDa_KfXqfY8YhR_RBFMpGRTaGzVKuIJE'
+api = 'ZZZ'
 bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
