@@ -1,7 +1,16 @@
 import sqlite3
 def initiate_db():
-    connection = sqlite3.connect('initiate.db ')
+    connection = sqlite3.connect('initiate.db')
     cursor = connection.cursor()
+    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS Users(
+    id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL,
+    email TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    balance INTEGER NOT NULL)
+    ''')
+
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Products(
     id INTEGER PRIMARY KEY,
@@ -12,10 +21,10 @@ def initiate_db():
     ''')
 
     Products = [
-        ['Редуксин', 'Редуксин', 199, 'image/1.JPG'],
-        ['Турбослим', 'Турбослим Ночь', 299, 'image/2.JPG'],
-        ['Голдлайн', 'Голдлайн', 1999, 'image/3.JPG'],
-        ['Линдакса', 'Линдакса', 2999, 'image/4.JPG'],
+        ['Редуксин', 'Редуксин', 199, './image/1.jpg'],
+        ['Турбослим', 'Турбослим Ночь', 299, './image/2.jpg'],
+        ['Голдлайн', 'Голдлайн', 1999, './image/3.jpg'],
+        ['Линдакса', 'Линдакса', 2999, './image/4.jpg'],
     ]
 
     cursor.execute('SELECT COUNT(*) FROM Products')
@@ -37,3 +46,26 @@ def get_all_products():
     connection.commit()
     connection.close()
     return result
+
+def add_user(username, email, age, balance = 1000):
+    connection, cursor = initiate_db()
+    check_users = cursor.execute(f'SELECT * FROM Users WHERE username = "{username}"')
+    if not check_users.fetchone():
+        cursor.execute(f'INSERT INTO Users (username, email, age, balance) VALUES (?, ?, ?, ?)',
+                       (username, email, age, balance))
+        connection.commit()
+        connection.close()
+    else:
+        raise (f'Пользователь {username} уже есть в базе данных.')
+
+def is_included(username):
+    connection, cursor = initiate_db()
+    check_user = cursor.execute(f'SELECT * FROM Users WHERE username = "{username}"')
+    result = check_user.fetchone() != None
+    connection.commit()
+    connection.close()
+    return result
+
+# products = get_all_products()
+# print(products)
+#users = add_user()
